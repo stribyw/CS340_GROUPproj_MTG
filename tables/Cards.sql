@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: May 11, 2018 at 12:33 PM
+-- Generation Time: May 11, 2018 at 12:32 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.0.30
 
@@ -25,14 +25,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `User`
+-- Table structure for table `Cards`
 --
 
-CREATE TABLE `User` (
-  `User_ID` varchar(25) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `Password_Hash` varchar(30) NOT NULL
+CREATE TABLE `Cards` (
+  `Card_ID` int(10) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Image_Path` varchar(50) DEFAULT NULL,
+  `Set_Name` varchar(20) DEFAULT NULL,
+  `Rarity` int(1) NOT NULL DEFAULT '1',
+  `Rulings` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -40,10 +42,10 @@ CREATE TABLE `User` (
 --
 
 --
--- Indexes for table `User`
+-- Indexes for table `Cards`
 --
-ALTER TABLE `User`
-  ADD PRIMARY KEY (`User_ID`);
+ALTER TABLE `Cards`
+  ADD PRIMARY KEY (`Card_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
