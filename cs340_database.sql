@@ -1,0 +1,399 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: classmysql.engr.oregonstate.edu:3306
+-- Generation Time: May 13, 2018 at 10:27 PM
+-- Server version: 10.1.22-MariaDB
+-- PHP Version: 7.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cs340_goertzel`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Cards`
+--
+
+CREATE TABLE `Cards` (
+  `Card_ID` int(10) NOT NULL,
+  `Name` varchar(20) NOT NULL,
+  `Image_Path` varchar(50) DEFAULT NULL,
+  `Set_Name` varchar(20) DEFAULT NULL,
+  `Rarity` int(1) NOT NULL DEFAULT '1',
+  `Rulings` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Cards`
+--
+
+INSERT INTO `Cards` (`Card_ID`, `Name`, `Image_Path`, `Set_Name`, `Rarity`, `Rulings`) VALUES
+(1, 'TestCard1', '/some/path/1', 'TestSet1', 1, NULL),
+(2, 'TestCard2', NULL, NULL, 1, NULL),
+(3, 'TestCard3', NULL, NULL, 1, NULL),
+(4, 'TestCard4', NULL, NULL, 1, NULL),
+(5, 'TestCard5', NULL, NULL, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Collects`
+--
+
+CREATE TABLE `Collects` (
+  `User_ID` varchar(25) NOT NULL,
+  `Card_ID` int(10) NOT NULL,
+  `Quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Collects`
+--
+
+INSERT INTO `Collects` (`User_ID`, `Card_ID`, `Quantity`) VALUES
+('1', 1, 5),
+('1', 2, 12),
+('1', 3, 1),
+('1', 4, 3),
+('2', 1, 4),
+('3', 5, 3),
+('5', 3, 20);
+
+--
+-- Triggers `Collects`
+--
+DELIMITER $$
+CREATE TRIGGER `Card_Removed_From_Collection` AFTER DELETE ON `Collects` FOR EACH ROW BEGIN
+  IF old.Card_ID IS NOT NULL THEN
+    DELETE FROM `Contains`
+        WHERE Card_ID=old.Card_ID;
+        
+        DELETE FROM `Trade`
+        WHERE Trade_ID IN 
+            (SELECT Trade_ID 
+             FROM `Trade_Have`
+             WHERE 
+             Card_ID=old.Card_ID);
+        
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Contains`
+--
+
+CREATE TABLE `Contains` (
+  `Deck_ID` int(10) NOT NULL,
+  `Card_ID` int(10) NOT NULL,
+  `Quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Contains`
+--
+
+INSERT INTO `Contains` (`Deck_ID`, `Card_ID`, `Quantity`) VALUES
+(1, 1, 3),
+(1, 2, 10),
+(1, 4, 3),
+(3, 5, 2),
+(5, 3, 1);
+
+--
+-- Triggers `Contains`
+--
+DELIMITER $$
+CREATE TRIGGER `Deck_Contains_Updated` AFTER UPDATE ON `Contains` FOR EACH ROW BEGIN
+  IF (old.Quantity = 0) THEN
+        DELETE FROM `Contains`
+        WHERE (Deck_ID=new.Deck_ID) AND (Card_ID=new.Card_ID);
+    END IF;
+
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Decks`
+--
+
+CREATE TABLE `Decks` (
+  `Deck_ID` int(10) NOT NULL,
+  `Deck_Name` varchar(25) NOT NULL,
+  `User_ID` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Decks`
+--
+
+INSERT INTO `Decks` (`Deck_ID`, `Deck_Name`, `User_ID`) VALUES
+(1, 'Deck1', '1'),
+(2, 'Deck2', '1'),
+(3, 'Deck3', '3'),
+(4, 'Deck4', '1'),
+(5, 'Deck5', '5');
+
+--
+-- Triggers `Decks`
+--
+DELIMITER $$
+CREATE TRIGGER `Deck_Deleted` AFTER DELETE ON `Decks` FOR EACH ROW BEGIN
+  IF old.Deck_ID IS NOT NULL THEN
+    DELETE FROM `Contains`
+        WHERE Deck_ID=old.Deck_ID;
+        
+        DELETE FROM `Discussions`
+        WHERE Deck_ID=old.Deck_ID;
+        
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Discussions`
+--
+
+CREATE TABLE `Discussions` (
+  `Discussion_ID` int(10) NOT NULL,
+  `Parent_ID` int(10) DEFAULT NULL,
+  `Post_Type` varchar(10) NOT NULL,
+  `Card_ID` int(10) DEFAULT NULL,
+  `Deck_ID` int(10) DEFAULT NULL,
+  `User_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Discussions`
+--
+
+INSERT INTO `Discussions` (`Discussion_ID`, `Parent_ID`, `Post_Type`, `Card_ID`, `Deck_ID`, `User_ID`) VALUES
+(1, NULL, 'Card', 1, NULL, 1),
+(2, 1, 'Card', 1, NULL, 3),
+(3, NULL, 'Card', 5, NULL, 3),
+(4, NULL, 'Deck', NULL, 1, 2),
+(5, 4, 'Deck', NULL, 1, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Trades`
+--
+
+CREATE TABLE `Trades` (
+  `Trade_ID` int(10) NOT NULL,
+  `User_ID` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Trades`
+--
+
+INSERT INTO `Trades` (`Trade_ID`, `User_ID`) VALUES
+(1, '1'),
+(2, '1'),
+(3, '2'),
+(4, '3'),
+(5, '5');
+
+--
+-- Triggers `Trades`
+--
+DELIMITER $$
+CREATE TRIGGER `Trade_Deleted` AFTER DELETE ON `Trades` FOR EACH ROW BEGIN
+  IF old.Trade_ID IS NOT NULL THEN
+    DELETE FROM `Trades`
+        WHERE User_ID=old.User_ID;
+        
+        DELETE FROM `Trade_Have`
+        WHERE Trade_ID=old.Trade_ID;
+        
+        DELETE FROM `Trade_Want`
+        WHERE Trade_ID=old.Trade_ID;
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Trade_Have`
+--
+
+CREATE TABLE `Trade_Have` (
+  `Trade_ID` int(10) NOT NULL,
+  `Card_ID` int(10) NOT NULL,
+  `Quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Trade_Have`
+--
+
+INSERT INTO `Trade_Have` (`Trade_ID`, `Card_ID`, `Quantity`) VALUES
+(1, 2, 3),
+(2, 4, 1),
+(3, 1, 2),
+(4, 5, 1),
+(5, 3, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Trade_Want`
+--
+
+CREATE TABLE `Trade_Want` (
+  `Trade_ID` int(10) NOT NULL,
+  `Card_ID` int(10) NOT NULL,
+  `Quantity` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Trade_Want`
+--
+
+INSERT INTO `Trade_Want` (`Trade_ID`, `Card_ID`, `Quantity`) VALUES
+(1, 3, 1),
+(1, 5, 3),
+(3, 4, 1),
+(4, 2, 2),
+(5, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `User`
+--
+
+CREATE TABLE `User` (
+  `User_ID` varchar(25) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Password_Hash` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `User`
+--
+
+INSERT INTO `User` (`User_ID`, `Name`, `Email`, `Password_Hash`) VALUES
+('1', 'User1', 'email1', '23kh545k7jlkj1lj4'),
+('2', 'User2', 'email2', '5lk234jjg5l4kj23jjkh1g43'),
+('3', 'User3', 'email3', 'slkfdj6mn8bmn4b2n34b'),
+('4', 'User4', 'email4', '7586h47g32jgh1kgj2h3g4nv'),
+('5', 'User5', 'email5', '345hjk465hj6hj2hjkkjlh');
+
+
+--
+-- Triggers `User`
+--
+DELIMITER $$
+CREATE TRIGGER `User_Deleted` AFTER DELETE ON `User` FOR EACH ROW BEGIN
+  IF old.User_ID IS NOT NULL THEN
+    DELETE FROM `Trades`
+        WHERE User_ID=old.User_ID;
+        
+        DELETE FROM `Collects`
+        WHERE User_ID=old.User_ID;
+        
+        DELETE FROM `Decks`
+        WHERE User_ID=old.User_ID;
+            
+        UPDATE `Discussions` 
+        SET User_ID = "Anonymous"
+        WHERE User_ID=old.User_ID;
+  END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Cards`
+--
+ALTER TABLE `Cards`
+  ADD PRIMARY KEY (`Card_ID`);
+
+--
+-- Indexes for table `Collects`
+--
+ALTER TABLE `Collects`
+  ADD PRIMARY KEY (`User_ID`,`Card_ID`);
+
+--
+-- Indexes for table `Contains`
+--
+ALTER TABLE `Contains`
+  ADD PRIMARY KEY (`Deck_ID`,`Card_ID`);
+
+--
+-- Indexes for table `Decks`
+--
+ALTER TABLE `Decks`
+  ADD PRIMARY KEY (`Deck_ID`);
+
+--
+-- Indexes for table `Discussions`
+--
+ALTER TABLE `Discussions`
+  ADD PRIMARY KEY (`Discussion_ID`);
+
+--
+-- Indexes for table `Trades`
+--
+ALTER TABLE `Trades`
+  ADD PRIMARY KEY (`Trade_ID`);
+
+--
+-- Indexes for table `Trade_Have`
+--
+ALTER TABLE `Trade_Have`
+  ADD PRIMARY KEY (`Trade_ID`,`Card_ID`);
+
+--
+-- Indexes for table `Trade_Want`
+--
+ALTER TABLE `Trade_Want`
+  ADD PRIMARY KEY (`Trade_ID`,`Card_ID`);
+
+--
+-- Indexes for table `User`
+--
+ALTER TABLE `User`
+  ADD PRIMARY KEY (`User_ID`);
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
