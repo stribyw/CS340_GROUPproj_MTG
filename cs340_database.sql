@@ -46,19 +46,19 @@ CREATE TABLE `Cards` (
 INSERT INTO `Cards` (`Card_ID`, `Name`, `Image_Path`, `Set_Name`, `Rarity`, `Rulings`) VALUES
 (1, 'Knight of Dusk', NULL, 'Tenth Edition', 1, NULL),
 (2, 'Dungrove Elder', NULL, 'Magic 2012', 3, NULL),
-(3, 'Lambholt Elder', NULL, 'Dark Ascension', 5, NULL),
-(4, 'Flameblast Dragon', NULL, 'Magic 2012', 2, NULL),
-(5, 'Furnace Dragon', NULL, 'Darksteel', 1, NULL),
-(6, 'Volcanic Dragon', NULL, 'Magic 2012', 6, NULL),
-(7, 'Yavimaya Elder', NULL, 'Vintage Masters', 4, NULL),
-(8, 'Knight of Glory', NULL, 'Dominaria', 2, NULL),
-(9, 'Knight of the Reliquary', NULL, 'Iconic Masters', 1, NULL),
+(3, 'Lambholt Elder', NULL, 'Dark Ascension', 3, NULL),
+(4, 'Flameblast Dragon', NULL, 'Magic 2012', 3, NULL),
+(5, 'Furnace Dragon', NULL, 'Darksteel', 2, NULL),
+(6, 'Volcanic Dragon', NULL, 'Magic 2012', 3, NULL),
+(7, 'Yavimaya Elder', NULL, 'Vintage Masters', 3, NULL),
+(8, 'Knight of Glory', NULL, 'Magic 2013', 2, NULL),
+(9, 'Knight of the Reliquary', NULL, 'Iconic Masters', 3, NULL),
 (10, 'Thraben Sentry', NULL, 'Innistrahd', 1, NULL),
-(11, 'Counterflux', NULL, 'Return to Ravnica', 8, NULL),
-(12, 'Grindclock', NULL, 'Scars of Mirrodin', 9, NULL),
-(13, 'Staggershock', NULL, 'Rise of the Eldrazi', 10, NULL),
-(14, 'Electrickery', NULL, 'Return to Ravnica', 18, NULL),
-(15, 'Gigantomancer', NULL, 'Rise of the Eldrazi', 2, NULL);
+(11, 'Counterflux', NULL, 'Return to Ravnica', 3, NULL),
+(12, 'Grindclock', NULL, 'Scars of Mirrodin', 3, NULL),
+(13, 'Staggershock', NULL, 'Rise of the Eldrazi', 1, NULL),
+(14, 'Electrickery', NULL, 'Return to Ravnica', 1, NULL),
+(15, 'Gigantomancer', NULL, 'Rise of the Eldrazi', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -427,11 +427,11 @@ CREATE TABLE `User` (
 
 INSERT INTO `User` (`User_ID`, `Name`, `Email`, `Password_Hash`) VALUES
 ('TheK_in_K&RC', 'Brian Kernighan', 'unixFORlife@unix.org', 'd1752a02c826b19aef1a03bbf61d78'),
-('TacoKisses', 'Jimmy Fallon', 'latenight@nbc.com', 'ae06b12d1ff2f00e86cc4754b92ec1',),
+('TacoKisses', 'Jimmy Fallon', 'latenight@nbc.com', 'ae06b12d1ff2f00e86cc4754b92ec1'),
 ('PartyONdude', 'Mike Meyers', 'shwingShwing@waynesworld.com', 'a3ad822328fe70e3127cb9864bf422'),
 ('OGMoonWalker', 'Neil Armstrong', 'upThere@nasa.gov', '16673493314fa5d1c96f27ceeb4829'),
 ('YourAirness23', 'Michael Jordan', 'theGOAT@bulls.com', 'd1673c02c123b01wff0c03ppf61d78'),
-('BringAtowel420', 'Mr Towel', 'towely@southpark.com', 'er47v46d0gg6g36h58ee4754b92ec1',),
+('BringAtowel420', 'Mr Towel', 'towely@southpark.com', 'er47v46d0gg6g36h58ee4754b92ec1'),
 ('GreenOGRE', 'The Shrek', 'pigsareyummy@feedme.com', 'b5ed264890ed14h4578bg0329bf422'),
 ('LazerRocketArm18', 'Peyton Manning', '5xMVP@halloffame.com', '12394302659fo7f2v34d31ergh365'),
 ('LifeIsAJourney', 'Bilbo Baggins', 'unexpected@theHobbit.org', '2af8ed9f5c773d89c976fdd76a25a1');
