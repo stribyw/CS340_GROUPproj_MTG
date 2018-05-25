@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cs340_goertzel`
+-- Database: `cs340_zitzelba`
 --
 
 
@@ -43,21 +43,21 @@ CREATE TABLE `Cards` (
 --
 
 INSERT INTO `Cards` (`Card_ID`, `Name`, `Image_Path`, `Set_Name`, `Rarity`, `Rulings`) VALUES
-(1, 'Knight of Dusk', NULL, 'Creature - Human Knight', 1, NULL),
-(2, 'Dungrove Elder', NULL, 'Creature - Treefolk', 3, NULL),
-(3, 'Lambholt Elder', NULL, 'Creature - Human Werewolf', 5, NULL),
-(4, 'Flameblast Dragon', NULL, 'Creature - Dragon', 2, NULL),
-(5, 'Furnace Dragon', NULL, 'Creature - Dragon', 1, NULL),
-(6, 'Volcanic Dragon', NULL, 'Creature - Dragon', 6, NULL),
-(7, 'Yavimaya Elder', NULL, 'Creature - Human Druid', 4, NULL),
-(8, 'Knight of Glory', NULL, 'Creature - Human Knight', 2, NULL),
-(9, 'Knight of Reliquary', NULL, 'Creature - Human Knight', 1, NULL),
-(10, 'Thraben Sentry', NULL, 'Creature - Human Soldier', 1, NULL),
-(11, 'Counterflux', NULL, 'Instant', 8, NULL),
-(12, 'Grindclock', NULL, 'Artifact', 9, NULL),
-(13, 'Staggershock', NULL, 'Instant', 10, NULL),
-(14, 'Electrickery', NULL, 'Instant', 18, NULL),
-(15, 'Gigantomancer', NULL, 'Creature - Human Shaman', 2, NULL);
+(1, 'Knight of Dusk', NULL, 'Tenth Edition', 1, NULL),
+(2, 'Dungrove Elder', NULL, 'Magic 2012', 3, NULL),
+(3, 'Lambholt Elder', NULL, 'Dark Ascension', 5, NULL),
+(4, 'Flameblast Dragon', NULL, 'Magic 2012', 2, NULL),
+(5, 'Furnace Dragon', NULL, 'Darksteel', 1, NULL),
+(6, 'Volcanic Dragon', NULL, 'Magic 2012', 6, NULL),
+(7, 'Yavimaya Elder', NULL, 'Vintage Masters', 4, NULL),
+(8, 'Knight of Glory', NULL, 'Dominaria', 2, NULL),
+(9, 'Knight of the Reliquary', NULL, 'Iconic Masters', 1, NULL),
+(10, 'Thraben Sentry', NULL, 'Innistrahd', 1, NULL),
+(11, 'Counterflux', NULL, 'Return to Ravnica', 8, NULL),
+(12, 'Grindclock', NULL, 'Scars of Mirrodin', 9, NULL),
+(13, 'Staggershock', NULL, 'Rise of the Eldrazi', 10, NULL),
+(14, 'Electrickery', NULL, 'Return to Ravnica', 18, NULL),
+(15, 'Gigantomancer', NULL, 'Rise of the Eldrazi', 2, NULL);
 
 -- --------------------------------------------------------
 
