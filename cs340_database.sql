@@ -43,11 +43,21 @@ CREATE TABLE `Cards` (
 --
 
 INSERT INTO `Cards` (`Card_ID`, `Name`, `Image_Path`, `Set_Name`, `Rarity`, `Rulings`) VALUES
-(1, 'TestCard1', '/some/path/1', 'TestSet1', 1, NULL),
-(2, 'TestCard2', NULL, NULL, 1, NULL),
-(3, 'TestCard3', NULL, NULL, 1, NULL),
-(4, 'TestCard4', NULL, NULL, 1, NULL),
-(5, 'TestCard5', NULL, NULL, 1, NULL);
+(1, 'Knight of Dusk', NULL, 'Creature - Human Knight', 1, NULL),
+(2, 'Dungrove Elder', NULL, 'Creature - Treefolk', 3, NULL),
+(3, 'Lambholt Elder', NULL, 'Creature - Human Werewolf', 5, NULL),
+(4, 'Flameblast Dragon', NULL, 'Creature - Dragon', 2, NULL),
+(5, 'Furnace Dragon', NULL, 'Creature - Dragon', 1, NULL),
+(6, 'Volcanic Dragon', NULL, 'Creature - Dragon', 6, NULL),
+(7, 'Yavimaya Elder', NULL, 'Creature - Human Druid', 4, NULL),
+(8, 'Knight of Glory', NULL, 'Creature - Human Knight', 2, NULL),
+(9, 'Knight of Reliquary', NULL, 'Creature - Human Knight', 1, NULL),
+(10, 'Thraben Sentry', NULL, 'Creature - Human Soldier', 1, NULL),
+(11, 'Counterflux', NULL, 'Instant', 8, NULL),
+(12, 'Grindclock', NULL, 'Artifact', 9, NULL),
+(13, 'Staggershock', NULL, 'Instant', 10, NULL),
+(14, 'Electrickery', NULL, 'Instant', 18, NULL),
+(15, 'Gigantomancer', NULL, 'Creature - Human Shaman', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -321,7 +331,12 @@ INSERT INTO `Trade_Have` (`Trade_ID`, `Card_ID`, `Quantity`) VALUES
 (2, 4, 1),
 (3, 1, 2),
 (4, 5, 1),
-(5, 3, 10);
+(5, 3, 10),
+(6, 10, 3),
+(7, 9, 4),
+(8, 7, 6),
+(9, 6, 5),
+(10, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -341,10 +356,15 @@ CREATE TABLE `Trade_Want` (
 
 INSERT INTO `Trade_Want` (`Trade_ID`, `Card_ID`, `Quantity`) VALUES
 (1, 3, 1),
-(1, 5, 3),
+(2, 5, 3),
 (3, 4, 1),
 (4, 2, 2),
-(5, 1, 1);
+(5, 1, 1),
+(6, 3, 3),
+(7, 6, 4),
+(8, 10, 6),
+(9, 1, 5),
+(10, 7, 2);
 
 -- --------------------------------------------------------
 
