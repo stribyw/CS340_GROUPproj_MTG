@@ -66,13 +66,55 @@ CREATE TABLE `Collects` (
 --
 
 INSERT INTO `Collects` (`User_ID`, `Card_ID`, `Quantity`) VALUES
-('1', 1, 5),
-('1', 2, 12),
-('1', 3, 1),
-('1', 4, 3),
-('2', 1, 4),
-('3', 5, 3),
-('5', 3, 20);
+('TheK_in_K&RC', 1, 4),
+('TheK_in_K&RC', 2, 6),
+('TheK_in_K&RC', 3, 4),
+('TheK_in_K&RC', 4, 2),
+('TheK_in_K&RC', 5, 15),
+('TheK_in_K&RC', 6, 12),
+('TheK_in_K&RC', 7, 5),
+('TheK_in_K&RC', 8, 22),
+('LifeIsAJourney', 3, 1),
+('LifeIsAJourney', 4, 3),
+('LifeIsAJourney', 5, 5),
+('LifeIsAJourney', 6, 7),
+('LifeIsAJourney', 7, 9),
+('LifeIsAJourney', 8, 11),
+('LifeIsAJourney', 9, 13),
+('LifeIsAJourney', 10, 15),
+('PartyONdude', 4, 4),
+('PartyONdude', 5, 3),
+('PartyONdude', 6, 1),
+('PartyONdude', 7, 7),
+('PartyONdude', 8, 9),
+('PartyONdude', 9, 14),
+('YourAirness23', 5, 13),
+('YourAirness23', 4, 30),
+('YourAirness23', 3, 20),
+('LazerRocketArm18', 3, 11),
+('LazerRocketArm18', 2, 6),
+('LazerRocketArm18', 6, 54),
+('LazerRocketArm18', 9, 17),
+('BringAtowel420', 3, 19),
+('BringAtowel420', 1, 15),
+('BringAtowel420', 5, 3),
+('BringAtowel420', 10, 15),
+('OGMoonWalker', 4, 5),
+('OGMoonWalker', 5, 13),
+('OGMoonWalker', 7, 10),
+('OGMoonWalker', 4, 8),
+('OGMoonWalker', 6, 19),
+('GreenOGRE', 1, 4),
+('GreenOGRE', 7, 23),
+('GreenOGRE', 3, 10),
+('TacoKisses', 3, 11),
+('TacoKisses', 4, 4),
+('TacoKisses', 5, 15),
+('TacoKisses', 9, 2),
+('TacoKisses', 8, 5),
+('TacoKisses', 7, 8),
+('TacoKisses', 1, 1),
+('TacoKisses', 10, 4);
 
 --
 -- Triggers `Collects`
@@ -149,11 +191,20 @@ CREATE TABLE `Decks` (
 --
 
 INSERT INTO `Decks` (`Deck_ID`, `Deck_Name`, `User_ID`) VALUES
-(1, 'Deck1', '1'),
-(2, 'Deck2', '1'),
-(3, 'Deck3', '3'),
-(4, 'Deck4', '1'),
-(5, 'Deck5', '5');
+(1, 'slayerDeck12', 'TheK_in_K&RC'),
+(2, 'TacoTOOTH42', 'TacoKisses'),
+(3, 'AngryBEAVER', 'PartyONdude'),
+(4, 'HungryHippo', 'TacoKisses'),
+(5, 'DirtyHIPPY', 'OGMoonWalker'),
+(6, 'GirlyGoblins', 'TheK_in_K&RC'),
+(7, 'LONEWolf221', 'LifeIsAJourney'),
+(8, 'Jund66', 'PartyONdude'),
+(9, 'Naya0101', 'OGMoonWalker'),
+(6, 'HotRouteOmaha', 'LazerRocketArm18'),
+(7, 'SexyMerfolk', 'GreenOGRE'),
+(8, 'DemonGOD', 'BringAtowel420'),
+(9, 'lebronWHO', 'YourAirness23'),
+(10, 'EsperBanter01', 'TheK_in_K&RC');
 
 --
 -- Triggers `Decks`
@@ -192,11 +243,16 @@ CREATE TABLE `Discussions` (
 --
 
 INSERT INTO `Discussions` (`Discussion_ID`, `Parent_ID`, `Post_Type`, `Card_ID`, `Deck_ID`, `User_ID`) VALUES
-(1, NULL, 'Card', 1, NULL, 1),
-(2, 1, 'Card', 1, NULL, 3),
-(3, NULL, 'Card', 5, NULL, 3),
-(4, NULL, 'Deck', NULL, 1, 2),
-(5, 4, 'Deck', NULL, 1, 5);
+(1, NULL, 'Card', 1, NULL, 'TheK_in_K&RC'),
+(2, 1, 'Card', 2, NULL, 'PartyONdude'),
+(3, NULL, 'Card', 5, NULL, 'LifeIsAJourney'),
+(4, NULL, 'Deck', NULL, 1, 'GreenOGRE'),
+(5, 4, 'Deck', NULL, 2, 'TacoKisses'),
+(6, 5, 'Card', 3, NULL, 'TheK_in_K&RC'),
+(7, 3, 'Card', 3, NULL, 'LifeIsAJourney'),
+(8, NULL, 'Card', 5, NULL, 'TacoKisses'),
+(9, 7, 'Deck', NULL, 7, 'YourAirness23'),
+(10, NULL, 'Deck', NULL, 9, 'PartyONdude');
 
 -- --------------------------------------------------------
 
@@ -214,11 +270,16 @@ CREATE TABLE `Trades` (
 --
 
 INSERT INTO `Trades` (`Trade_ID`, `User_ID`) VALUES
-(1, '1'),
-(2, '1'),
-(3, '2'),
-(4, '3'),
-(5, '5');
+(1, 'PartyONdude'),
+(2, 'YourAirness23'),
+(3, 'TacoKisses'),
+(4, 'BringAtowel420'),
+(5, 'YourAirness23'),
+(6, 'PartyONdude'),
+(7, 'TheK_in_K&RC'),
+(8, 'OGMoonWalker'),
+(9, 'BringAtowel420'),
+(10, 'LazerRocketArm18');
 
 --
 -- Triggers `Trades`
@@ -303,11 +364,15 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`User_ID`, `Name`, `Email`, `Password_Hash`) VALUES
-('1', 'User1', 'email1', '23kh545k7jlkj1lj4'),
-('2', 'User2', 'email2', '5lk234jjg5l4kj23jjkh1g43'),
-('3', 'User3', 'email3', 'slkfdj6mn8bmn4b2n34b'),
-('4', 'User4', 'email4', '7586h47g32jgh1kgj2h3g4nv'),
-('5', 'User5', 'email5', '345hjk465hj6hj2hjkkjlh');
+('TheK_in_K&RC', 'Brian Kernighan', 'unixFORlife@unix.org', 'd1752a02c826b19aef1a03bbf61d78'),
+('TacoKisses', 'Jimmy Fallon', 'latenight@nbc.com', 'ae06b12d1ff2f00e86cc4754b92ec1',),
+('PartyONdude', 'Mike Meyers', 'shwingShwing@waynesworld.com', 'a3ad822328fe70e3127cb9864bf422'),
+('OGMoonWalker', 'Neil Armstrong', 'upThere@nasa.gov', '16673493314fa5d1c96f27ceeb4829'),
+('YourAirness23', 'Michael Jordan', 'theGOAT@bulls.com', 'd1673c02c123b01wff0c03ppf61d78'),
+('BringAtowel420', 'Mr Towel', 'towely@southpark.com', 'er47v46d0gg6g36h58ee4754b92ec1',),
+('GreenOGRE', 'The Shrek', 'pigsareyummy@feedme.com', 'b5ed264890ed14h4578bg0329bf422'),
+('LazerRocketArm18', 'Peyton Manning', '5xMVP@halloffame.com', '12394302659fo7f2v34d31ergh365'),
+('LifeIsAJourney', 'Bilbo Baggins', 'unexpected@theHobbit.org', '2af8ed9f5c773d89c976fdd76a25a1');
 
 
 --
