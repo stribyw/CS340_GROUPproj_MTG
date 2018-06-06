@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else if ($pass1 != $pass2) {
 		$msg ="<h2>Passwords don't match</h2>";
 	} else {
-		// attempt insert query 
+		// attempt insert query
 		$query = "INSERT INTO User (User_ID, Name, Email, Password_Hash) VALUES ('$userid', '$name', '$email', '$hash')";
 		if (mysqli_query($conn, $query)){
 			$msg = "Account Created Successfully";
@@ -45,39 +45,40 @@ mysqli_close($conn);
 
 
 <main>
-	<section>
+	<section class="todo">
 		<h2 name="msg" id="msg"> <?php echo $msg; ?> </h2>
-
-	<form method="post" id="createAccountForm" name="createAccountForm">
-		<fieldset>
-			<legend>Create Account Info:</legend>
-			<p>
-				<label for="userid">Username:</label>
-				<input type="text" class="required" name="userid" id="userid" title="username should be alphanumeric">
-			</p>
-			<p>
-				<label for="name">Name:</label>
-				<input type="text" class="required" name="name" id="name">
-			</p>
-			<p>
-				<label for="email">Email:</label>
-				<input type="text" class="required" name="email" id="email">
-			</p>
-			<p>
-				<label for="password">Password:</label>
-				<input type="text" class="required" name="pass1" id="pass1">
-			</p>
-			<p>
-				<label for="password">Confirm Password:</label>
-				<input type="text" class="required" name="pass2" id="pass2">
-			</p>
-		</fieldset>
-
-		<p>
-			<input type = "submit"  value = "Submit" />
-			<input type = "reset"  value = "Clear Form" />
-		</p>
-	</form>
+		<form method="post" id="createAccountForm" name="createAccountForm">
+			<div class="todo-body">
+				<fieldset>
+				<legend>Create Account Info:</legend>
+					<ul class="todo-list">
+						<li>
+							<label for="userid">Username:</label>
+							<input type="text" class="required" name="userid" id="userid" title="username should be alphanumeric">
+						</li>
+						<li>
+							<label for="name">Name:</label>
+							<input type="text" class="required" name="name" id="name">
+						</li>
+						<li>
+							<label for="email">Email:</label>
+							<input type="text" class="required" name="email" id="email">
+						</li>
+						<li>
+							<label for="password">Password:</label>
+							<input type="text" class="required" name="pass1" id="pass1">
+						</li>
+						<li>
+							<label for="password">Confirm Password:</label>
+							<input type="text" class="required" name="pass2" id="pass2">
+						</li>
+						<li><input type = "submit"  value = "Submit" /></li>
+						<li><input type = "reset"  value = "Clear Form" /></li>
+					</ul>
+				</fieldset>
+			</div>
+		</form>
+	</section>
 </main>
 
 <?php include("footer.php"); ?>
