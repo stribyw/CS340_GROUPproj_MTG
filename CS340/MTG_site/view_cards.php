@@ -33,6 +33,9 @@ while($row = mysqli_fetch_row($result)) {
 	echo "</tr>\n";
 }
 
+
+echo "User is "  . $_SESSION["User_ID"] . ".";
+
 mysqli_free_result($result);
 mysqli_close($conn);
 ?>

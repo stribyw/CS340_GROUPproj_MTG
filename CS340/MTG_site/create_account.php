@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$pass1  = mysqli_real_escape_string($conn, $_POST['pass1']);
 	$pass2  = mysqli_real_escape_string($conn, $_POST['pass2']);
 
-				// $Password_Hash = mysqli_real_escape_string($conn, $_POST['password']);
+	// $hash = mysqli_real_escape_string($conn, $_POST['password']);
+	// $hash = hash("md5", $pass1, FALSE);
 	$hash = MD5($pass1);
 
 
@@ -29,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	} else if ($pass1 != $pass2) {
 		$msg ="<h2>Passwords don't match</h2>";
 	} else {
-					// attempt insert query 
+		// attempt insert query 
 		$query = "INSERT INTO User (User_ID, Name, Email, Password_Hash) VALUES ('$userid', '$name', '$email', '$hash')";
-		if(mysqli_query($conn, $query)){
+		if (mysqli_query($conn, $query)){
 			$msg = "Account Created Successfully";
 		} else{
 			echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
@@ -45,7 +46,7 @@ mysqli_close($conn);
 
 <main>
 	<section>
-		<h2> <?php echo $msg; ?> </h2>
+		<h2 name="msg" id="msg"> <?php echo $msg; ?> </h2>
 
  <!--      <section class="todo">
 		<h2>Add the following information to sign up!</h2>
@@ -61,12 +62,12 @@ mysqli_close($conn);
 			</ul>
 		</div>
 	</section> -->
-	<form method="post" id="addForm">
+	<form method="post" id="createAccountForm" name="createAccountForm">
 		<fieldset>
 			<legend>Create Account Info:</legend>
 			<p>
 				<label for="userid">Username:</label>
-				<input type="text" class="required" name="userid" id="userid">
+				<input type="text" class="required" name="userid" id="userid" title="username should be alphanumeric">
 			</p>
 			<p>
 				<label for="name">Name:</label>

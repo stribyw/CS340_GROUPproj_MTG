@@ -32,7 +32,6 @@ mysqli_close($conn);
 
 
 <main>
-
 	<section class="todo">
 		<h2>About the Site:</h2>
 		<div class="todo-body">
