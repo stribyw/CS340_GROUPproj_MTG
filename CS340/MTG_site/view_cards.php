@@ -35,7 +35,7 @@ if (mysqli_num_rows($result) == 0) {
 	}
 	// get number of columns in table	
 	$fields_num = mysqli_num_fields($result);
-	echo "<h1>Parts:</h1>";
+	echo "<h1>Your Cards:</h1>";
 	echo "<table id='t01' border='1'><tr>";
 
 	// printing table headers
