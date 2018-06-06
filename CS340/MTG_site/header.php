@@ -25,10 +25,11 @@
 				echo "<li class='navbar-item'><a href='view_discussions.php'>Forums</a></li>";
 				echo "<li class='navbar-item'><a href='my_trades.php'>Trades</a></li>";
 				echo "<li class='navbar-item'><a href='account.php'>" . $_SESSION['User_ID'] . "<a/></li>";
-
-			}
+                echo "<li class='navbar-item navbar-right'><a href='#'>Log out</a></li>";
+            } else {
+                echo "<li class='navbar-item navbar-right'><a href='#'>Log in</a></li>";
+            }
 			?>
-			<li class="navbar-item navbar-right"><a href="#">Log out</a></li>
 		</ul>
 	</nav>
 </header>
