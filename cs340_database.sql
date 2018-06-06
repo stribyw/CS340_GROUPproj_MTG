@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
@@ -252,10 +251,6 @@ INSERT INTO `Decks` (`Deck_ID`, `Deck_Name`, `User_ID`) VALUES
 (7, 'LONEWolf221', 'LifeIsAJourney'),
 (8, 'Jund66', 'PartyONdude'),
 (9, 'Naya0101', 'OGMoonWalker'),
-(6, 'HotRouteOmaha', 'LazerRocketArm18'),
-(7, 'SexyMerfolk', 'GreenOGRE'),
-(8, 'DemonGOD', 'BringAtowel420'),
-(9, 'lebronWHO', 'YourAirness23'),
 (10, 'EsperBanter01', 'TheK_in_K&RC');
 
 --
@@ -287,24 +282,25 @@ CREATE TABLE `Discussions` (
   `Post_Type` varchar(10) NOT NULL,
   `Card_ID` int(10) DEFAULT NULL,
   `Deck_ID` int(10) DEFAULT NULL,
-  `User_ID` int(11) NOT NULL
+  `User_ID` varchar(25) NOT NULL,
+  `Contents` varchar(200) NOT NULL DEFAULT "empty"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `Discussions`
 --
 
-INSERT INTO `Discussions` (`Discussion_ID`, `Parent_ID`, `Post_Type`, `Card_ID`, `Deck_ID`, `User_ID`) VALUES
-(1, NULL, 'Card', 1, NULL, 'TheK_in_K&RC'),
-(2, 1, 'Card', 2, NULL, 'PartyONdude'),
-(3, NULL, 'Card', 5, NULL, 'LifeIsAJourney'),
-(4, NULL, 'Deck', NULL, 1, 'GreenOGRE'),
-(5, 4, 'Deck', NULL, 2, 'TacoKisses'),
-(6, 5, 'Card', 3, NULL, 'TheK_in_K&RC'),
-(7, 3, 'Card', 3, NULL, 'LifeIsAJourney'),
-(8, NULL, 'Card', 5, NULL, 'TacoKisses'),
-(9, 7, 'Deck', NULL, 7, 'YourAirness23'),
-(10, NULL, 'Deck', NULL, 9, 'PartyONdude');
+INSERT INTO `Discussions` (`Discussion_ID`, `Parent_ID`, `Post_Type`, `Card_ID`, `Deck_ID`, `User_ID`, `Contents`) VALUES
+(1, NULL, 'Card', 1, NULL, 'TheK_in_K&RC', "empty"),
+(2, 1, 'Card', 2, NULL, 'PartyONdude', "empty"),
+(3, NULL, 'Card', 5, NULL, 'LifeIsAJourney', "empty"),
+(4, NULL, 'Deck', NULL, 1, 'GreenOGRE', "empty"),
+(5, 4, 'Deck', NULL, 2, 'TacoKisses', "empty"),
+(6, 5, 'Card', 3, NULL, 'TheK_in_K&RC', "empty"),
+(7, 3, 'Card', 3, NULL, 'LifeIsAJourney', "empty"),
+(8, NULL, 'Card', 5, NULL, 'TacoKisses', "empty"),
+(9, 7, 'Deck', NULL, 7, 'YourAirness23', "empty"),
+(10, NULL, 'Deck', NULL, 9, 'PartyONdude', "empty");
 
 -- --------------------------------------------------------
 
