@@ -1,9 +1,10 @@
 </body>
-</html>
 
 <footer>
 	<div class="copyright">
 		Copyright &copy; 2016
 	</div>
 </footer>
+
+</html>
 
