@@ -10,15 +10,14 @@ include("db_connect.php");
 $tmp = $_SESSION["User_ID"];
 echo "<p>Tmp: $tmp</p>";
 //$query = "SELECT COUNT(*) FROM User WHERE User_ID='$tmp' ";
-//$query = "SELECT * FROM User WHERE User_ID='$tmp' ";
+// $query = "SELECT * FROM User WHERE User_ID='$tmp' ";
 $query = "SELECT * FROM User WHERE User_ID='$tmp'";
-
+//$query = "SELECT * FROM Cards";
 echo "<p>Query: $query</p>";
 $result = mysqli_query($conn, $query);
-echo "<p>Result: $result</p>";
+// echo "<p>Result: $result</p>";
 // echo "<p>Test: $result</p>";
 if (mysqli_num_rows($result) == 0) {
-// if ($result != 0) {
 
 	echo "<p>Please log in</p>";
 	
