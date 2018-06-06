@@ -12,3 +12,15 @@
 		</ul>
 	</nav>
 </header>
+
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>M:TG Exchange</title>
+	<!-- This is a 3rd-party stylesheet for Font Awesome: http://fontawesome.io/ -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen">
+	<script type="text/javascript" src="verifyInput.js" > </script>
+	<link rel="stylesheet" href="style.css" media="screen">
+</head>
+<body>
