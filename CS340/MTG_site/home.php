@@ -7,6 +7,8 @@ include("header.php");
 include("db_connect.php");
 // session_start();
 
+$lis = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		// Escape user inputs for security
@@ -24,18 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$obj = $resultIn->fetch_object();
 			// $tmp = MD5($password);
 			$tmp = hash("md5", $password, FALSE);
-			echo "<p>stored hash: '$obj->Password_Hash'</p>";
-			echo "<p>pass hash: '$tmp'</p>";
 			if ($obj->Password_Hash == MD5($password)) {
-			// if ($obj->Password_Hash == hash("md5", $password, FALSE)) { // Make sure password was correct
-				echo "<p>Login Successful</p>";
-
+                //echo "Log in successful.";
 				$_SESSION["User_ID"] = $username;
-				// $_SESSION["User_ID"] = "testing";
-				echo "<p>User is "  . $_SESSION["User_ID"] . "</p>";
-
-				echo "<p>Session variables are set</p>";
-
+                $lis = true;
 			} else {
 				echo "<p>Password Incorrect</p>";
 			}
@@ -78,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 										<label for="password">Password:</label>
 										<input type="text" class="required" name="password" id="password">
 									</li>
-									<li><input type = "submit"  value = "Submit" /></li>
+									<li><input type = "submit"  value = "Log In" /></li>
 									<li><input type = "reset"  value = "Clear Form" /></li>
 								</ul>
 							</div>
@@ -94,4 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</div>
 </main>
 
-<?php include("footer.php"); ?>
+<?php 
+    include("footer.php"); 
+    if ($lis) {
+        header("Location:home.php");
+        exit();
+    }
+?>
