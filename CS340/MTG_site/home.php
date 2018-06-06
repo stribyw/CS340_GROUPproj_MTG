@@ -35,7 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				echo "<p>User is "  . $_SESSION["User_ID"] . "</p>";
 
 				echo "<p>Session variables are set</p>";
-
+                
+                echo "<script type=\"text/javascript\">location.href = home.php</script>";
+                
 			} else {
 				echo "<p>Password Incorrect</p>";
 			}
@@ -78,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 										<label for="password">Password:</label>
 										<input type="text" class="required" name="password" id="password">
 									</li>
-									<li><input type = "submit"  value = "Submit" /></li>
+									<li><input type = "submit"  value = "Log In" /></li>
 									<li><input type = "reset"  value = "Clear Form" /></li>
 								</ul>
 							</div>
