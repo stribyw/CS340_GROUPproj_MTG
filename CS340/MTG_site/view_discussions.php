@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$currentpage="Home page";
+$currentpage="View Discussions";
 include("header.php");
 include("db_connect.php");
 

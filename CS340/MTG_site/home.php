@@ -1,8 +1,11 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <?php
 $currentpage="Home Page";
 include("header.php");
 include("db_connect.php");
+// session_start();
 
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,10 +52,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// if ($obj->Password_Hash == hash("md5", $password, FALSE)) { // Make sure password was correct
 				echo "<p>Login Successful</p>";
 
-				$_SESSION["User_ID"] = $username;
-				echo "Session variables are set.";
+				
 
-				session_start();
+				
+
+				$_SESSION["User_ID"] = $username;
+				// $_SESSION["User_ID"] = "testing";
+				echo "<p>User is "  . $_SESSION["User_ID"] . "</p>";
+
+				echo "<p>Session variables are set</p>";
+
 			} else {
 				echo "<p>Password Incorrect</p>";
 			}

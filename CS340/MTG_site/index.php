@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$currentpage="Home page";
+$currentpage="Index";
 include("header.php");
 include("db_connect.php");
 

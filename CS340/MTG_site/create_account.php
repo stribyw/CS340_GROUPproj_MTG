@@ -48,20 +48,6 @@ mysqli_close($conn);
 	<section>
 		<h2 name="msg" id="msg"> <?php echo $msg; ?> </h2>
 
- <!--      <section class="todo">
-		<h2>Add the following information to sign up!</h2>
-		<div class="todo-body">
-			<ul class="todo-list">
-				<li>Username: <input type="text" class="required" name="User_ID" id="User_ID" title="username can be characters and numeric"></li>
-				<li>Name: <input type="text" class="required" name="Name" id="Name"></li>
-				<li>Email: <input type="text" class="required" name="Email" id="Email"></li>
-				<li>Password: <input type="text" class="required" name="password" id="password"></li>
-				<li>Repeat Password: <input type="text" class="required" name="password" id="password"></li>
-				<li><input type="submit" value="Login"></li>
-				<li><input type="reset" value="Clear Form"></li>
-			</ul>
-		</div>
-	</section> -->
 	<form method="post" id="createAccountForm" name="createAccountForm">
 		<fieldset>
 			<legend>Create Account Info:</legend>

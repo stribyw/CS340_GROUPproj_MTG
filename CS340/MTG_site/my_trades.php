@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$currentpage="Decks Page";
+$currentpage="My Trades";
 include("header.php");
 include("db_connect.php");
 

@@ -1,42 +1,63 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <?php
-$currentpage="Home page";
+$currentpage="View Cards";
 include("header.php");
 include("db_connect.php");
 
+// echo "User is "  . $_SESSION["User_ID"] . ".";
+// $query = "SELECT * FROM User WHERE I
+$tmp = $_SESSION["User_ID"];
+echo "<p>Tmp: $tmp</p>";
+//$query = "SELECT COUNT(*) FROM User WHERE User_ID='$tmp' ";
+//$query = "SELECT * FROM User WHERE User_ID='$tmp' ";
+$query = "SELECT * FROM User WHERE User_ID='$tmp'";
+
+echo "<p>Query: $query</p>";
+$result = mysqli_query($conn, $query);
+echo "<p>Result: $result</p>";
+// echo "<p>Test: $result</p>";
+if (mysqli_num_rows($result) == 0) {
+// if ($result != 0) {
+
+	echo "<p>Please log in</p>";
+	
+} else {
+
 	// query to select all information from supplier table
-$query = "SELECT * FROM Cards ";
+	$query = "SELECT * FROM Cards";
+	//$query = "SELECT * FROM Collects WHERE User_ID='$tmp'";
 
 
 	// Get results from query
-$result = mysqli_query($conn, $query);
-if (!$result) {
-	die("Query to show fields from table failed");
-}
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		die("Query to show fields from table failed");
+	}
 	// get number of columns in table	
-$fields_num = mysqli_num_fields($result);
-echo "<h1>Parts:</h1>";
-echo "<table id='t01' border='1'><tr>";
+	$fields_num = mysqli_num_fields($result);
+	echo "<h1>Parts:</h1>";
+	echo "<table id='t01' border='1'><tr>";
 
 	// printing table headers
-for($i=0; $i<$fields_num; $i++) {	
-	$field = mysqli_fetch_field($result);	
-	echo "<td><b>$field->name</b></td>";
-}
-echo "</tr>\n";
-while($row = mysqli_fetch_row($result)) {	
-	echo "<tr>";	
+	for($i=0; $i<$fields_num; $i++) {	
+		$field = mysqli_fetch_field($result);	
+		echo "<td><b>$field->name</b></td>";
+	}
+	echo "</tr>\n";
+	while($row = mysqli_fetch_row($result)) {	
+		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
 		// of $row to $cell variable	
-	foreach($row as $cell)		
-		echo "<td>$cell</td>";	
-	echo "</tr>\n";
+		foreach($row as $cell)		
+			echo "<td>$cell</td>";	
+		echo "</tr>\n";
+	}
+
 }
 
 
-echo "User is "  . $_SESSION["User_ID"] . ".";
-
-mysqli_free_result($result);
+// mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
