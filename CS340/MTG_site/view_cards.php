@@ -32,6 +32,7 @@
 		// get number of columns in table
 		$fields_num = mysqli_num_fields($result);
 		echo "<h2>Your Cards:</h2>";
+		//echo "<input type="text" id="myInput" onkeyup="filterFunction()" placeholder="Search for names.." title="Type in a name">";
 		echo "<table id='t01' border='1'><tr>";
 
 		// printing table headers
@@ -55,6 +56,7 @@
 
 
 <main>
+	<input type="text" id="myInput" onkeyup="filterCardFunction()" placeholder="Search for names.." title="Type in a name">
 
 </main>
 
