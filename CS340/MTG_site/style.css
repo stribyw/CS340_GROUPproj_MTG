@@ -5,7 +5,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    
+
 }
 
 /*header {
@@ -21,7 +21,7 @@ header h1 {
     padding-bottom: 20px;
     margin-bottom: 0px;
     margin-top: 0px;
-    
+
 }
 
 h1 a {
@@ -139,13 +139,13 @@ main {
     font-family: "Arial Rounded MT", "Helvetica Rounded", Arial, sans-serif;
 }
 
-.where {
+/*.where {
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
 }
 
 .when {
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
-}
+}*/
 
 /*to indent second line of paragraph, but indents another that I do not want to*/
 /*.todo-body p {
@@ -153,8 +153,61 @@ main {
     text-indent: -1.5em;
 }*/
 
-.who {
+/*.who {
     font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+}*/
+
+h2 {
+  margin-left: 50px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+table {
+  margin-left: 50px;
+  margin-bottom: 45px;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+table#t01 {
+	width:610px;
+}
+
+table#t01 tr:nth-child(even) {
+  background-color: #99ffd8;
+}
+
+table#t01 tr:nth-child(odd) {
+  background-color: #ffb3b3;
+}
+
+table#t01 th {
+  background-color: black;
+  color: white;
+}
+
+table#t01  tr:hover {
+  background-color: #ff9900;
+  font-weight: bold;
+  color: #3333ff;
+  cursor: pointer;
 }
 
 footer {
@@ -163,7 +216,7 @@ footer {
     /*right: 0;*/
     left: 0;
     bottom: 0;
-    width: 100%;    
+    width: 100%;
 }
 
 .copyright{
@@ -175,5 +228,3 @@ footer {
     font-family: "Avant Garde", Aventgarde, "Century Gothic", CenturyGothic;
     color: #ffffff
 }
-
-
