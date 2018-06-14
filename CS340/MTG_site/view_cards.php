@@ -12,39 +12,47 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) == 0) {
 	echo "<p>Please log in</p>";
 } else {
+
+	// Update counts if card added or removed
+	$modCard = $_GET['addcid'];
+	if ($modCard) {
+		$query = "UPDATE Collects SET Quantity=Quantity+1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$conn->query($query);
+	}
+	$modCard = $_GET['rmcid'];
+	if ($modCard) {
+		$query = "UPDATE Collects SET Quantity=Quantity-1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$conn->query($query);
+	}
+
+
+
 	$query = "SELECT Card_ID, Name, Set_Name, Rarity, Quantity FROM Collects NATURAL JOIN Cards WHERE User_ID='$user'";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
 	}
-		// get number of columns in table
+
+	// get number of columns in table
 	$fields_num = mysqli_num_fields($result);
 	echo "<h2>Your Cards:</h2>";
 	echo "<table id='t01' border='1'><tr>";
 
-	// echo 'Testing ' . htmlspecialchars($_GET['cid']) . '!';
-	// $query = "SELECT Card_ID, Name, Set_Name, Rarity, Quantity FROM Collects NATURAL JOIN Cards WHERE User_ID='$user'";
-	// $result = mysqli_query($conn, $query);
-	// if (!$result) {
-	// 	die("Query to show fields from table failed");
-	// }
-
-
-		// printing table headers
+	// printing table headers
 	for($i=0; $i<$fields_num; $i++) {
 		$field = mysqli_fetch_field($result);
 		echo "<td><b>$field->name</b></td>";
 	}
 	echo "</tr>\n";
 	while($row = mysqli_fetch_row($result)) {
-		echo "<tr onclick='cardClicked(this)'>";
-			// $row is array... foreach( .. ) puts every element
-			// of $row to $cell variable
+		// echo "<tr onclick='cardClicked(this)'>";
+		echo "<tr>";
 		foreach($row as $cell)
-			echo "<td>$cell</td>";
+			echo "<td onclick='cardClicked(this)'>$cell</td>";
+		echo "<td onclick='addCardClicked(this)'><button>add1</button></td>";
+		echo "<td onclick='removeCardClicked(this)'><button>remove1</button></td>";
 		echo "</tr>\n";
 	}
-
 
 
 
@@ -54,7 +62,7 @@ if (mysqli_num_rows($result) == 0) {
 		$query = "SELECT Name, Rarity, Set_Name FROM Cards WHERE Card_ID='$selCard'";
 		$result = mysqli_query($conn, $query);
 		if (!$result) { die("Query to show fields from table failed");}
-		echo "Card Info: ";
+		echo "<p>Card Info: ";
 		foreach(mysqli_fetch_row($result) as $cell)
 			echo "$cell, ";
 		echo "</p>";
@@ -73,7 +81,7 @@ if (mysqli_num_rows($result) == 0) {
 		$result = mysqli_query($conn, $query);
 		// echo $result;
 		if (!$result) { die("Query to show fields from table failed2");}
-		echo "Number of your decks its in: ";
+		echo "<p>Number of your decks its in: ";
 		foreach(mysqli_fetch_row($result) as $cell)
 			echo "$cell ";
 		echo "</p>";
@@ -82,7 +90,7 @@ if (mysqli_num_rows($result) == 0) {
 		$query = "SELECT COUNT(Card_ID) FROM Discussions WHERE Card_ID='$selCard'";
 		$result = mysqli_query($conn, $query);
 		if (!$result) { die("Query to show fields from table failed3");}
-		echo "Discussions its in: ";
+		echo "<p>Discussions its in: ";
 		foreach(mysqli_fetch_row($result) as $cell)
 			echo "$cell ";
 		echo "</p>";
@@ -92,7 +100,7 @@ if (mysqli_num_rows($result) == 0) {
 
 		$result = mysqli_query($conn, $query);
 		if (!$result) { die("Query to show fields from table failed4");}
-		echo "Trades its offered in: ";
+		echo "<p>Trades its offered in: ";
 		foreach(mysqli_fetch_row($result) as $cell)
 			echo "$cell ";
 		echo "</p>";

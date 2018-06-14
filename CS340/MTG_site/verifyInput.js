@@ -122,15 +122,20 @@ function filterCardFunction() {
 }
 
 function cardClicked(x) {
-	// get card id
-	cid = x.cells[0].innerHTML
-	// alert("Card ID is: " + cid);
-	if (cid) {
-        window.location = 'view_cards.php?cid=' + cid;
-        // document.getElementById("selCard").innerHTML="Success?"
-    }
-
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'view_cards.php?cid=' + cid; }
 }
+
+function addCardClicked(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'view_cards.php?addcid=' + cid; }
+}
+
+function removeCardClicked(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'view_cards.php?rmcid=' + cid; }
+}
+
 
 //trying to figure out how to show information based off selected card
 function whereClick(event) {

@@ -22,7 +22,7 @@
 
 					// echo "<li class='navbar-item'><a href='cards_overview.php'>Cards</a></li>";
 					// echo "<li class='navbar-item'><a href='decks_overview.php'>Decks</a></li>";
-					echo "<li class='navbar-item'><a href='view_cards.php'>View Cards</a></li>";
+					echo "<li class='navbar-item'><a href='view_cards.php'>View Collection</a></li>";
 					echo "<li class='navbar-item'><a href='edit_cards.php'>Edit Collection</a></li>";
 					echo "<li class='navbar-item'><a href='view_decks.php'>View Decks</a></li>";
 					echo "<li class='navbar-item'><a href='edit_decks.php'>Edit Decks</a></li>";
