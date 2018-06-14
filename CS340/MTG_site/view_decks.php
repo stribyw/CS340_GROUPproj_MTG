@@ -35,8 +35,7 @@ if (mysqli_num_rows($result) == 0) {
 	$selDeck = $_GET['did'];
 	if ($selDeck) {
 
-		// $query = "SELECT * FROM Decks NATURAL JOIN Contains NATURAL JOIN Cards WHERE Deck_ID='$selDeck' AND $User_ID='$user'";
-		$query = "SELECT * FROM Decks NATURAL JOIN Contains NATURAL JOIN Cards WHERE Deck_ID='$selDeck'";
+		$query = "SELECT Name, Set_Name, Quantity FROM Decks NATURAL JOIN Contains NATURAL JOIN Cards WHERE Deck_ID='$selDeck' AND User_ID='$user'";
 		$result = mysqli_query($conn, $query);
 		if (!$result) {
 			die("Query to show fields from table failed");

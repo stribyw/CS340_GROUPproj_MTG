@@ -142,6 +142,16 @@ function removeCardClicked(x) {
 	if (cid) { window.location = 'view_cards.php?rmcid=' + cid; }
 }
 
+function addCardClickedEdit(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_cards.php?addcid=' + cid; }
+}
+
+function removeCardClickedEdit(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_cards.php?rmcid=' + cid; }
+}
+
 
 //trying to figure out how to show information based off selected card
 function whereClick(event) {
