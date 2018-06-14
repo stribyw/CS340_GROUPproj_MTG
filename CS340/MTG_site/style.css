@@ -217,7 +217,6 @@ table#t01 th {
 
 table#t01  tr:hover {
   background-color: #ff9900;
-  font-weight: bold;
   color: #3333ff;
   cursor: pointer;
 }
