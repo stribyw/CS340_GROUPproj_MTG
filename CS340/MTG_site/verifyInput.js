@@ -59,46 +59,46 @@ function makeRed(inputDiv){
 function makeClean(inputDiv){
 	inputDiv.parentNode.style.backgroundColor="#FFFFFF";
 	inputDiv.parentNode.style.color="#000000";
-	// inputDiv.style.color="#000000";
+// inputDiv.style.color="#000000";
 }
 
 //the main function must occur after the page is loaded, hence being inside the wondow.onload event handler.
 window.onload = function(){
 	var myForm = document.getElementById("createAccountForm");
 
-    //all inputs with the class required are looped through
-    var requiredInputs = document.querySelectorAll(".required");
-    for (var i=0; i < requiredInputs.length; i++){
-    	requiredInputs[i].onfocus = function(){
-    		this.style.backgroundColor = "#EEEE00";
-    	}
-    }
-
-    //on submitting the form, "empty" checks are performed on required inputs.
-    myForm.onsubmit = function(e){
-    	var requiredInputs = document.querySelectorAll(".required");
-    	for (var i=0; i < requiredInputs.length; i++){
-    		if( isBlank(requiredInputs[i]) ){
-    			e.preventDefault();
-    			makeRed(requiredInputs[i]);
-    			document.getElementById("msg").innerHTML="Complete All Entries"
-    		}
-    		else{
-    			makeClean(requiredInputs[i]);
-    		}
-    	}
-		// if ( !checkPswds() ) {
-		// 	e.preventDefault();
-		// }
+	//all inputs with the class required are looped through
+	var requiredInputs = document.querySelectorAll(".required");
+	for (var i=0; i < requiredInputs.length; i++){
+		requiredInputs[i].onfocus = function(){
+			this.style.backgroundColor = "#EEEE00";
+		}
 	}
 
-	myForm.onreset = function(e){
+	//on submitting the form, "empty" checks are performed on required inputs.
+	myForm.onsubmit = function(e){
 		var requiredInputs = document.querySelectorAll(".required");
 		for (var i=0; i < requiredInputs.length; i++){
-			makeClean(requiredInputs[i]);
+			if( isBlank(requiredInputs[i]) ){
+				e.preventDefault();
+				makeRed(requiredInputs[i]);
+				document.getElementById("msg").innerHTML="Complete All Entries"
+			}
+			else{
+				makeClean(requiredInputs[i]);
+			}
 		}
-		document.getElementById("msg").innerHTML="Try Again"
+	// if ( !checkPswds() ) {
+	// 	e.preventDefault();
+	// }
+}
+
+myForm.onreset = function(e){
+	var requiredInputs = document.querySelectorAll(".required");
+	for (var i=0; i < requiredInputs.length; i++){
+		makeClean(requiredInputs[i]);
 	}
+	document.getElementById("msg").innerHTML="Try Again"
+}
 
 }
 
@@ -121,7 +121,16 @@ function filterCardFunction() {
 	}
 }
 
+function cardClicked(x) {
+	// get card id
+	cid = x.cells[0].innerHTML
+	// alert("Card ID is: " + cid);
+	if (cid) {
+        window.location = 'view_cards.php?cid=' + cid;
+        // document.getElementById("selCard").innerHTML="Success?"
+    }
 
+}
 
 //trying to figure out how to show information based off selected card
 function whereClick(event) {

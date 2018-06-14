@@ -11,8 +11,8 @@ if ($_SESSION["User_ID"] == '') {
 
 } else {
 
-	$tmp = $_SESSION["User_ID"];
-	$query = "SELECT * FROM Decks WHERE User_ID='$tmp'";
+	$user = $_SESSION["User_ID"];
+	$query = "SELECT * FROM Decks WHERE User_ID='$user'";
 
 	// Get results from query
 	$result = mysqli_query($conn, $query);

@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<p>Want to trade, play, and interact with other players!?!</p>
 							<p>Create an account and then build your card and deck inventory, and then you can create trades of cards that you are willing to trade and what you are wanting for them. </p>
 							<p>And most importantly there are discussion boards for everything so that you can talk with other M:TG players just like you!</p>
-						</ul>
+						</div>
 					</div>
 				</section>
 			</div>

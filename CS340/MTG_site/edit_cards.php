@@ -11,8 +11,8 @@ if ($_SESSION["User_ID"] == '') {
 
 } else {
 
-	$tmp = $_SESSION["User_ID"];
-	$query = "SELECT Name, Quantity, Set_Name FROM Collects NATURAL JOIN Cards WHERE User_ID='$tmp'";
+	$user = $_SESSION["User_ID"];
+	$query = "SELECT Name, Quantity, Set_Name FROM Collects NATURAL JOIN Cards WHERE User_ID='$user'";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
