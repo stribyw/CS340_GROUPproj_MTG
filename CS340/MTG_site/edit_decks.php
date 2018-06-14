@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <?php
 $currentpage="Edit Decks";
@@ -5,60 +6,49 @@ include("header.php");
 include("db_connect.php");
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SESSION["User_ID"] == '') {
+	echo "<p>Please log in</p>";
 
-	$username = mysqli_real_escape_string($conn, $_POST['username']);
-	$password = mysqli_real_escape_string($conn, $_POST['password']);
+} else {
 
-				// See if username is in the table
-	$queryIn = "SELECT * FROM Users where username='$username'";
-	$resultIn = mysqli_query($conn, $queryIn);
-	if ($row = mysqli_fetch_assoc($resultIn)) {
-		$salt = $row['salt'];
-		$saltedPassword = MD5($password.$salt);
-		if ($saltedPassword == $row['password']){
-			echo "Log in successful!";
-		} else {
-			$rowpassword = $row['password'];
-			echo "ERROR, wrong username or password.";
-		}
-	} else {
-		echo "ERROR, wrong username or password.";
+	$tmp = $_SESSION["User_ID"];
+	$query = "SELECT * FROM Decks WHERE User_ID='$tmp'";
+
+	// Get results from query
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		die("Query to show fields from table failed");
 	}
+	
+	// get number of columns in table
+	$fields_num = mysqli_num_fields($result);
+	echo "<h2>Your Decks:</h2>";
+	echo "<table id='t01' border='1'><tr>";
+
+	// printing table headers
+	for($i=0; $i<$fields_num; $i++) {
+		$field = mysqli_fetch_field($result);
+		echo "<td><b>$field->name</b></td>";
+	}
+	echo "</tr>\n";
+	while($row = mysqli_fetch_row($result)) {
+		echo "<tr>";
+		foreach($row as $cell)
+			echo "<td>$cell</td>";
+		echo "</tr>\n";
+	}
+	
+
 }
-// close connection
+
+
+
+mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 
 <main>
-
-	<section class="todo">
-		<h2>About the Site:</h2>
-		<div class="todo-body">
-			<ul class="todo-list">
-				<li>put</li>
-				<li>stuff here</li>
-				<li>about the</li>
-				<li>site</li>
-			</ul>
-		</div>
-	</section>
-
-	<section class="todo">
-		<h2>Login</h2>
-		<div class="todo-body">
-			<form action="/action_page.php">
-				Username: <input type="text" name="Username"><br>
-				Password: <input type="text" name="password"><br>
-				<input type="submit" value="Login">
-			</form>
-		</div>
-	</section>
-
-	<section class="todo">
-		<h2 class="navbar-item"><a href="/about">Create Account</a></h2>
-	</section>
-
+	
 </main>
 
 <?php include("footer.php"); ?>

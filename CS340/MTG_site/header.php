@@ -10,29 +10,34 @@
 </head>
 <body>
 	
-<header>
-	<h1><a>Magic: The Gathering Exchange</a></h1>
-	<nav>
-		<ul class="navbar-list">
-			<li class="navbar-item"><a href="home.php">Home</a></li>
-			
-			<?php
+	<header>
+		<h1><a>Magic: The Gathering Exchange</a></h1>
+		<nav>
+			<ul class="navbar-list">
+				<li class="navbar-item"><a href="home.php">Home</a></li>
 
-			if ($_SESSION['User_ID'] != '') {
+				<?php
 
-				echo "<li class='navbar-item'><a href='cards_overview.php'>Cards</a></li>";
-				echo "<li class='navbar-item'><a href='decks_overview.php'>Decks</a></li>";
-				echo "<li class='navbar-item'><a href='view_discussions.php'>Forums</a></li>";
-				echo "<li class='navbar-item'><a href='my_trades.php'>Trades</a></li>";
-				echo "<li class='navbar-item'><a href='account.php'>" . $_SESSION['User_ID'] . "<a/></li>";
-                echo "<li class='navbar-item navbar-right'><a href='logout.php'>Log out</a></li>";
-            } else {
-                echo "<li class='navbar-item navbar-right'><a href='#'>Log in</a></li>";
-            }
-			?>
-		</ul>
-	</nav>
-</header>
+				if ($_SESSION['User_ID'] != '') {
+
+					// echo "<li class='navbar-item'><a href='cards_overview.php'>Cards</a></li>";
+					// echo "<li class='navbar-item'><a href='decks_overview.php'>Decks</a></li>";
+					echo "<li class='navbar-item'><a href='view_cards.php'>View Cards</a></li>";
+					echo "<li class='navbar-item'><a href='edit_cards.php'>Edit Collection</a></li>";
+					echo "<li class='navbar-item'><a href='view_decks.php'>View Decks</a></li>";
+					echo "<li class='navbar-item'><a href='edit_decks.php'>Edit Decks</a></li>";
+
+					echo "<li class='navbar-item'><a href='view_discussions.php'>Forums</a></li>";
+					echo "<li class='navbar-item'><a href='my_trades.php'>Trades</a></li>";
+					echo "<li class='navbar-item'><a href='account.php'>Welcome " . $_SESSION['User_ID'] . "<a/></li>";
+					echo "<li class='navbar-item navbar-right'><a href='logout.php'>Log out</a></li>";
+				} else {
+					echo "<li class='navbar-item navbar-right'><a href='#'>Log in</a></li>";
+				}
+				?>
+			</ul>
+		</nav>
+	</header>
 
 
 

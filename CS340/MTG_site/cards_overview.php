@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$User_ID  = mysqli_real_escape_string($conn, $_POST['User_ID']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
 
-				// See if username is in the table
+	// See if username is in the table
 	$queryIn = "SELECT * FROM User where User_ID='$User_ID'";
 	$resultIn = mysqli_query($conn, $queryIn);
 	if ($row = mysqli_fetch_assoc($resultIn)) {
