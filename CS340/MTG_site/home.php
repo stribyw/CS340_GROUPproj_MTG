@@ -1,13 +1,11 @@
-<?php session_start(); ?>
+<?php session_start(); ob_start();?>
 
 <!DOCTYPE html>
 <?php
 $currentpage="Home Page";
 include("header.php");
 include("db_connect.php");
-// session_start();
 
-$lis = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -28,8 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$tmp = hash("md5", $password, FALSE);
 			if ($obj->Password_Hash == MD5($password)) {
                 //echo "Log in successful.";
+
 				$_SESSION["User_ID"] = $username;
-                $lis = true;
+				while (ob_get_status()) { ob_end_clean(); }
+			    header("Location:home.php?");
 			} else {
 				echo "<p>Password Incorrect</p>";
 			}
@@ -42,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<main>
 		<div class="two-row">
-
 			<div class="two-column">
 				<section class="todo">
 					<h2>About the Site:</h2>
@@ -90,8 +89,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php 
     include("footer.php"); 
-    if ($lis) {
-        header("Location:home.php");
-        exit();
-    }
 ?>
