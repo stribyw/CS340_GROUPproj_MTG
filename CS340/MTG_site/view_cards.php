@@ -23,6 +23,7 @@ if (mysqli_num_rows($result) == 0) {
 	if ($modCard) {
 		$query = "UPDATE Collects SET Quantity=Quantity-1 WHERE Card_ID='$modCard' AND User_ID='$user'";
 		$conn->query($query);
+		mysqli_query($conn, "CALL Clear_Zeros");
 	}
 
 
@@ -104,20 +105,18 @@ if (mysqli_num_rows($result) == 0) {
 		foreach(mysqli_fetch_row($result) as $cell)
 			echo "$cell ";
 		echo "</p>";
-
-		
 	}
 
 
 
-	echo "<div class='two-column'>";
-		echo "<h2 id=selCard>Current Card Name:</h2>";
-		echo "<div class='todo-body'>";
-			echo "<div class='todo-list'>";
-				echo "<p>Test</p>";
-			echo "</div>";
-		echo "</div>";
-	echo "</div>";
+	// echo "<div class='two-column'>";
+	// echo "<h2 id=selCard>Current Card Name:</h2>";
+	// echo "<div class='todo-body'>";
+	// echo "<div class='todo-list'>";
+	// echo "<p>Test</p>";
+	// echo "</div>";
+	// echo "</div>";
+	// echo "</div>";
 	// echo "<div>";
 	// echo "<div class='two-column'>";
 	// 	echo "<section class='todo'>";
@@ -132,16 +131,16 @@ if (mysqli_num_rows($result) == 0) {
 
 	// echo "<div class='two-column'>";
 	// 	echo "<section class='todo'>";
-			
+
 	// 	echo "</section>";
 
 	// 	echo "<section class='todo'>";
-			
+
 	// 	echo "</section>";
 	// echo "</div>";
 	// echo "</div>";
 }
-	// mysqli_free_result($result);
+	mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 

@@ -128,6 +128,7 @@ function cardClicked(x) {
 
 function addCardClicked(x) {
 	cid = x.parentNode.cells[0].innerHTML;
+	// alert(cid);
 	if (cid) { window.location = 'view_cards.php?addcid=' + cid; }
 }
 

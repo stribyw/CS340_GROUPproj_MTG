@@ -76,6 +76,16 @@ CREATE TABLE `Collects` (
 --
 
 INSERT INTO `Collects` (`User_ID`, `Card_ID`, `Quantity`) VALUES
+('test', 1, 6),
+('test', 2, 6),
+('test', 3, 8),
+('test', 4, 9),
+('test', 5, 15),
+('test', 6, 12),
+('test', 7, 8),
+('test', 8, 22),
+('test', 9, 9),
+('test', 10, 9),
 ('TheK_in_K&RC', 1, 6),
 ('TheK_in_K&RC', 2, 6),
 ('TheK_in_K&RC', 3, 8),
