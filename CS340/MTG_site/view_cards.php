@@ -140,7 +140,7 @@ if (mysqli_num_rows($result) == 0) {
 	// echo "</div>";
 	// echo "</div>";
 }
-	mysqli_free_result($result);
+mysqli_free_result($result);
 mysqli_close($conn);
 ?>
 

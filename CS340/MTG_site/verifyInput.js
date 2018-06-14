@@ -126,9 +126,14 @@ function cardClicked(x) {
 	if (cid) { window.location = 'view_cards.php?cid=' + cid; }
 }
 
+function deckClicked(x) {
+	did = x.cells[0].innerHTML;
+	if (did) { window.location = 'view_decks.php?did=' + did; }
+}
+
+
 function addCardClicked(x) {
 	cid = x.parentNode.cells[0].innerHTML;
-	// alert(cid);
 	if (cid) { window.location = 'view_cards.php?addcid=' + cid; }
 }
 
