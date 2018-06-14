@@ -11,19 +11,19 @@ include "header.php";
 
 		<div class="two-column">
 			<section class="todo">
-				<h2><a href="view_cards.php">Go to My Cards<a/></h2>
+				<h2><a href="view_cards.php">My Card Collection<a/></h2>
 			</section>  
 
 			<section class="todo">
-				<h2><a href="view_decks.php">Go to My Decks<a/></h2>
+				<h2><a href="view_decks.php">My Decks<a/></h2>
 			</section>
 
 			<section class="todo">
-				<h2><a href="my_trades.php">Go to My Trades<a/></h2>
+				<h2><a href="my_trades.php">All Trades<a/></h2>
 			</section>
 
 			<section class="todo">
-				<h2><a href="view_discussions.php">Go to My Posts<a/></h2>
+				<h2><a href="view_discussions.php">Forum<a/></h2>
 			</section>
 		</div>
 
