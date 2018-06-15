@@ -125,19 +125,19 @@ function newCardClickedEdit(x) {
 	if (cid) { window.location = 'edit_cards.php?newcid=' + cid; }
 }
 
-function addCardClickedEditDecks(x) {
+function addCardClickedEditDecks(x, deck) {
 	cid = x.parentNode.cells[0].innerHTML;
-	if (cid) { window.location = 'edit_decks.php?addcid=' + cid; }
+	if (cid) { window.location = 'edit_decks.php?did='+deck+'&addcid=' + cid; }
 }
 
-function removeCardClickedEditDecks(x) {
+function removeCardClickedEditDecks(x, deck) {
 	cid = x.parentNode.cells[0].innerHTML;
-	if (cid) { window.location = 'edit_decks.php?rmcid=' + cid; }
+	if (cid) { window.location = 'edit_decks.php?did='+deck+'&rmcid=' + cid; }
 }
 
-function newCardClickedEditDecks(x) {
+function newCardClickedEditDecks(x, deck) {
 	cid = x.parentNode.cells[0].innerHTML;
-	if (cid) { window.location = 'edit_decks.php?newcid=' + cid; }
+	if (cid) { window.location = 'edit_decks.php?did='+deck+'&newcid=' + cid; }
 }
 
 function discussionClicked(x) {

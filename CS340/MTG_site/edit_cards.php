@@ -28,7 +28,6 @@ if (mysqli_num_rows($result) == 0) {
 	if ($modCard) {
 		$query = "INSERT INTO Collects VALUES ('$user', $modCard, 1)";
 		$conn->query($query);
-		mysqli_query($conn, "CALL Clear_Zeros");
 	}
 
 	// Display user's cards
