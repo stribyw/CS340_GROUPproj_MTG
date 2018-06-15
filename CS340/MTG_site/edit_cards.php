@@ -13,6 +13,24 @@ if (mysqli_num_rows($result) == 0) {
 
 } else {
 
+	$modCard = $_GET['addcid'];
+	if ($modCard) {
+		$query = "UPDATE Collects SET Quantity=Quantity+1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$conn->query($query);
+	}
+	$modCard = $_GET['rmcid'];
+	if ($modCard) {
+		$query = "UPDATE Collects SET Quantity=Quantity-1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$conn->query($query);
+		mysqli_query($conn, "CALL Clear_Zeros");
+	}
+	$modCard = $_GET['newcid'];
+	if ($modCard) {
+		$query = "UPDATE Collects SET Quantity=Quantity-1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$conn->query($query);
+		mysqli_query($conn, "CALL Clear_Zeros");
+	}
+
 	// Display user's cards
 	$query = "SELECT Card_ID, Name, Quantity, Set_Name FROM Collects NATURAL JOIN Cards WHERE User_ID='$user'";
 	$result = mysqli_query($conn, $query);
@@ -42,7 +60,9 @@ if (mysqli_num_rows($result) == 0) {
 
 
 	// Display all cards
-	$query = "SELECT Card_ID, Name, Set_Name FROM Cards";
+	// $query = "(SELECT Card_ID, Name, Set_Name FROM Cards) - (SELECT Card_ID, Name, Quantity, Set_Name FROM Collects NATURAL JOIN Cards WHERE User_ID='$user')";
+	// $query = "SELECT Card_ID, Name, Set_Name FROM Cards CROSS JOIN User WHERE User='$user'";
+	$query = "SELECT Card_ID, Name, Set_Name FROM Cards WHERE Card_ID NOT IN ";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -63,8 +83,8 @@ if (mysqli_num_rows($result) == 0) {
 		echo "<tr>";
 		foreach($row as $cell)
 			echo "<td>$cell</td>";
-		echo "<td onclick='addCardClickedEdit(this)'><button>add1</button></td>";
-		echo "<td onclick='removeCardClickedEdit(this)'><button>remove1</button></td>";
+		echo "<td onclick='newCardClickedEdit(this)'><button>add1</button></td>";
+		// echo "<td onclick='removeCardClickedEdit(this)'><button>remove1</button></td>";
 		echo "</tr>\n";
 	}
 

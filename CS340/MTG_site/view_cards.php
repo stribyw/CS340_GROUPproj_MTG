@@ -56,7 +56,7 @@ $result = mysqli_query($conn, $query);
 					echo "<td onclick='removeCardClicked(this)'><button>remove1</button></td>";
 					echo "</tr>\n";
 				}
-
+				echo "</table>";
 				 ?>
 
 			</section>
@@ -76,7 +76,7 @@ if ($selCard) {
 	if (!$result) {
 		die("Query to show fields from table failed");
 	}
-
+	echo "<h2>Selected Card</h2>";
 	$fields_num = mysqli_num_fields($result);
 	echo "<table id='t01' border='1'><tr>";
 
@@ -113,9 +113,11 @@ if ($selCard) {
 	while($row = mysqli_fetch_row($result5)) 
 		{ foreach($row as $cell) echo "<td>$cell</td>"; }
 	echo "</tr>";
+	echo "</table>";
 }
 ?>
 </section>
+</div>
 </div>
 <?php
 

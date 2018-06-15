@@ -151,6 +151,11 @@ function removeCardClickedEdit(x) {
 	if (cid) { window.location = 'edit_cards.php?rmcid=' + cid; }
 }
 
+function newCardClickedEdit(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_cards.php?newcid=' + cid; }
+}
+
 function discussionClicked(x) {
 	did = x.cells[0].innerHTML;
 	if (did) { window.location = 'view_discussions.php?did=' + did}
