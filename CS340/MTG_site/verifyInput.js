@@ -1,40 +1,4 @@
 
-// The event handler function to compute the total cost
-//function to determine if a field is blank
-// var pswd;
-
-// function checkPswds(){
-
-// 	pswd1 = document.getElementById('pass1');
-// 	pswd2 = document.getElementById('pass2');
-// 	var  re = /[0-9]/;
-//     if( ! re.test(pswd1.value)) {
-// 		alert("Password must contain at least one digit");
-// 		return false;
-//     }
-// 	re = /[A-Z]/;
-//     if( ! re.test(pswd1.value)) {
-// 		alert("Password must contain at least one uppercase letter");
-// 		return false;
-//     }
-// 	re = /[a-z]/;
-//     if( ! re.test(pswd1.value)) {
-// 		alert("Password must contain at least one lowercase letter");
-// 		return false;
-//     }
-// 	if( pswd1.value.length < 6) {
-// 		alert("Password must have at least 6 characters");
-// 		return false;
-//     }
-// 	if (pswd1.value == pswd2.value) {
-// 		alert("Good Passwords");
-// 		return true;
-// 	} else {
-// 		alert("Passwords don't match");
-// 		return false;
-// 	}
-
-// }
 
 function isBlank(inputField){
 	if(inputField.type=="checkbox"){
@@ -131,6 +95,11 @@ function deckClicked(x) {
 	if (did) { window.location = 'view_decks.php?did=' + did; }
 }
 
+function deckClickedEdit(x) {
+	did = x.cells[0].innerHTML;
+	if (did) { window.location = 'edit_decks.php?did=' + did; }
+}
+
 function addCardClicked(x) {
 	cid = x.parentNode.cells[0].innerHTML;
 	if (cid) { window.location = 'view_cards.php?addcid=' + cid; }
@@ -154,6 +123,21 @@ function removeCardClickedEdit(x) {
 function newCardClickedEdit(x) {
 	cid = x.parentNode.cells[0].innerHTML;
 	if (cid) { window.location = 'edit_cards.php?newcid=' + cid; }
+}
+
+function addCardClickedEditDecks(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_decks.php?addcid=' + cid; }
+}
+
+function removeCardClickedEditDecks(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_decks.php?rmcid=' + cid; }
+}
+
+function newCardClickedEditDecks(x) {
+	cid = x.parentNode.cells[0].innerHTML;
+	if (cid) { window.location = 'edit_decks.php?newcid=' + cid; }
 }
 
 function discussionClicked(x) {
