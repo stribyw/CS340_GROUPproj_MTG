@@ -26,7 +26,7 @@ if (mysqli_num_rows($result) == 0) {
 	}
 	$modCard = $_GET['newcid'];
 	if ($modCard) {
-		$query = "UPDATE Collects SET Quantity=Quantity-1 WHERE Card_ID='$modCard' AND User_ID='$user'";
+		$query = "INSERT INTO Collects VALUES ('$user', $modCard, 1)";
 		$conn->query($query);
 		mysqli_query($conn, "CALL Clear_Zeros");
 	}
@@ -57,12 +57,13 @@ if (mysqli_num_rows($result) == 0) {
 		echo "<td onclick='removeCardClickedEdit(this)'><button>remove1</button></td>";
 		echo "</tr>\n";
 	}
+	echo "</table>";
 
 
 	// Display all cards
 	// $query = "(SELECT Card_ID, Name, Set_Name FROM Cards) - (SELECT Card_ID, Name, Quantity, Set_Name FROM Collects NATURAL JOIN Cards WHERE User_ID='$user')";
 	// $query = "SELECT Card_ID, Name, Set_Name FROM Cards CROSS JOIN User WHERE User='$user'";
-	$query = "SELECT Card_ID, Name, Set_Name FROM Cards WHERE Card_ID NOT IN ";
+	$query = "SELECT Card_ID, Name, Set_Name FROM Cards WHERE Card_ID NOT IN (SELECT Card_ID FROM Collects NATURAL JOIN Cards WHERE User_ID='$user')";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -87,6 +88,7 @@ if (mysqli_num_rows($result) == 0) {
 		// echo "<td onclick='removeCardClickedEdit(this)'><button>remove1</button></td>";
 		echo "</tr>\n";
 	}
+	echo "</table>";
 
 
 }

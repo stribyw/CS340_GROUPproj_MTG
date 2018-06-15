@@ -29,6 +29,7 @@ if (mysqli_num_rows($result) == 0) {
 			echo "<td>$cell</td>";
 		echo "</tr>\n";
 	}
+	echo "</table>";
 
 
 
@@ -56,6 +57,7 @@ if (mysqli_num_rows($result) == 0) {
 				echo "<td>$cell</td>";
 			echo "</tr>\n";
 		}
+		echo "</table>";
 	}
 
 }
