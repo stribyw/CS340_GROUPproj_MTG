@@ -1,8 +1,14 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
+
+<html>
+<body>
+
 <?php
 $currentpage="Account Page";
-include "header.php";
-
+include ("header.php");
+include("db_connect.php");
+ 
 ?>
 
 
@@ -36,10 +42,41 @@ include "header.php";
 				<h2>User Info</a></h2>
 				<div class="todo-body">
 					<ul class="todo-list">
-						<p>put</p>
-						<p>stuff here</p>
-						<p>about the</p>
-						<p>user</p>
+						<?php
+						
+							$user = $_SESSION["User_ID"];
+							if ($_SESSION["User_ID"] == '') {
+							echo "<p>Please log in</p>";
+
+							} else {
+								$query = "SELECT SUM(Quantity) FROM Collects WHERE User_ID = '$user'";
+								$result = mysqli_query($conn, $query);
+								$row = mysqli_fetch_row($result);
+								$cards = $row[0];
+								$query = "SELECT COUNT(*) FROM Decks WHERE User_ID = '$user'";
+								$result = mysqli_query($conn, $query);
+								$row = mysqli_fetch_row($result);
+								$decks = $row[0];
+								$query = "SELECT COUNT(*) FROM Discussions WHERE User_ID = '$user'";
+								$result = mysqli_query($conn, $query);
+								$row = mysqli_fetch_row($result);
+								$posts = $row[0];
+								echo "<p>Cards Owned: ";
+								echo $cards;
+								echo "</p>";
+								
+								echo "<p>Decks Owned: ";
+								echo $decks;
+								echo "</p>";
+								
+								echo "<p>Discussions: ";
+								echo $posts;
+								echo "</p>";
+								
+								mysqli_close($conn);
+							}
+							
+						?>
 					</ul>
 				</div>
 			</section>
@@ -48,5 +85,7 @@ include "header.php";
 	</div>
 </main>
 
+</html>
+</body>
 
 <?php include("footer.php"); ?>
