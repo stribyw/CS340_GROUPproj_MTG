@@ -50,7 +50,7 @@ if (mysqli_num_rows($result) == 0) {
 	
 	// get number of columns in table
 	$fields_num = mysqli_num_fields($result);
-	echo "<h2>Your Collection:</h2>";
+	echo "<h2>Possible Cards:</h2>";
 	echo "<table id='t01' border='1'><tr>";
 
 	// printing table headers

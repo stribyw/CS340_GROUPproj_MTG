@@ -18,11 +18,7 @@ $result = mysqli_query($conn, $query);
 
 			<?php
 			if (mysqli_num_rows($result) == 0) {
-				?>
-				<!-- echo "<p>Please log in</p>"; -->
-				<p>Please log in</p>
-
-				<?php
+				echo "<p>Please log in</p>";
 			} else {
 	// Update counts if card added or removed
 				$modCard = $_GET['addcid'];
@@ -43,11 +39,10 @@ $result = mysqli_query($conn, $query);
 					die("Query to show fields from table failed");
 				}
 
-	// get number of columns in table
+				// get number of columns in table
 				$fields_num = mysqli_num_fields($result);
-
 				echo "<table id='t01' border='1'><tr>";
-	// printing table headers
+				// printing table headers
 				for($i=0; $i<$fields_num; $i++) {
 					$field = mysqli_fetch_field($result);
 					echo "<td><b>$field->name</b></td>";
@@ -62,65 +57,67 @@ $result = mysqli_query($conn, $query);
 					echo "</tr>\n";
 				}
 
+				 ?>
 
-
-				$selCard = $_GET['cid'];
-				if ($selCard) {
-
-					$query = "SELECT Name, Set_Name, Quantity FROM Decks NATURAL JOIN Contains NATURAL JOIN Cards WHERE User_ID='$user'";
-					$result = mysqli_query($conn, $query);
-					if (!$result) {
-						die("Query to show fields from table failed");
-					}
-
-					$fields_num = mysqli_num_fields($result);
-					echo "<h2>Cards in this Deck:</h2>";
-					echo "<table id='t01' border='1'><tr>";
-
-
-					$query = "SELECT Name, Set_Name, Rarity FROM Cards WHERE Card_ID='$selCard'";
-					$result1 = mysqli_query($conn, $query);
-					$query = "SELECT COUNT(*) FROM `Collects` WHERE Card_ID='$selCard'";
-					$result2 = mysqli_query($conn, $query);
-					$query = "SELECT COUNT(*) FROM Contains NATURAL JOIN Decks NATURAL JOIN User WHERE Card_ID='$selCard' AND User_ID = '$user'";
-					$result3 = mysqli_query($conn, $query);
-					$query = "SELECT COUNT(Card_ID) FROM Discussions WHERE Card_ID='$selCard'";
-					$result4 = mysqli_query($conn, $query);
-					$query = "SELECT COUNT(Card_ID) FROM Trade_Have WHERE Card_ID='$selCard'";
-					$result5 = mysqli_query($conn, $query);
-
-
-					echo "<td><b>Card Name</b></td>";
-					echo "<td><b>Set_Name Name</b></td>";
-					echo "<td><b>Rarity</b></td>";
-					echo "<td><b>Total Count</b></td>";
-					echo "<td><b>Decks its in</b></td>";
-					echo "<td><b>Discussions its in</b></td>";
-					echo "<td><b>Trades its in</b></td>";
-					echo "</tr>\n";
-					echo "<tr>";
-					while($row = mysqli_fetch_row($result1)) 
-					{ foreach($row as $cell) echo "<td>$cell</td>"; }
-					while($row = mysqli_fetch_row($result2)) 
-					{ foreach($row as $cell) echo "<td>$cell</td>"; }
-					while($row = mysqli_fetch_row($result3)) 
-					{ foreach($row as $cell) echo "<td>$cell</td>";  }
-					while($row = mysqli_fetch_row($result4)) 
-					{ foreach($row as $cell) echo "<td>$cell</td>"; }
-					while($row = mysqli_fetch_row($result5)) 
-					{ foreach($row as $cell) echo "<td>$cell</td>"; }
-					echo "</tr>";
-				}
-
-				?>
-
-	<!-- 		</section>
+			</section>
 		</div>
 
 
 		<div class="two-column">
-			<section class="todo"> -->
-				<?php
+			<section class="todo">
+<!-- 			<h2>Selected Card Info:</h2>
+-->				
+<?php
+$selCard = $_GET['cid'];
+if ($selCard) {
+
+	$query = "SELECT Name, Set_Name, Quantity FROM Decks NATURAL JOIN Contains NATURAL JOIN Cards WHERE User_ID='$user'";
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		die("Query to show fields from table failed");
+	}
+
+	$fields_num = mysqli_num_fields($result);
+	echo "<table id='t01' border='1'><tr>";
+
+
+	$query = "SELECT Name, Set_Name, Rarity FROM Cards WHERE Card_ID='$selCard'";
+	$result1 = mysqli_query($conn, $query);
+	$query = "SELECT COUNT(*) FROM `Collects` WHERE Card_ID='$selCard'";
+	$result2 = mysqli_query($conn, $query);
+	$query = "SELECT COUNT(*) FROM Contains NATURAL JOIN Decks NATURAL JOIN User WHERE Card_ID='$selCard' AND User_ID = '$user'";
+	$result3 = mysqli_query($conn, $query);
+	$query = "SELECT COUNT(Card_ID) FROM Discussions WHERE Card_ID='$selCard'";
+	$result4 = mysqli_query($conn, $query);
+	$query = "SELECT COUNT(Card_ID) FROM Trade_Have WHERE Card_ID='$selCard'";
+	$result5 = mysqli_query($conn, $query);
+
+
+	echo "<td><b>Card Name</b></td>";
+	echo "<td><b>Set_Name Name</b></td>";
+	echo "<td><b>Rarity</b></td>";
+	echo "<td><b>Total Count</b></td>";
+	echo "<td><b>Decks its in</b></td>";
+	echo "<td><b>Discussions its in</b></td>";
+	echo "<td><b>Trades its in</b></td>";
+	echo "</tr>\n";
+	echo "<tr>";
+	while($row = mysqli_fetch_row($result1)) 
+		{ foreach($row as $cell) echo "<td>$cell</td>"; }
+	while($row = mysqli_fetch_row($result2)) 
+		{ foreach($row as $cell) echo "<td>$cell</td>"; }
+	while($row = mysqli_fetch_row($result3)) 
+		{ foreach($row as $cell) echo "<td>$cell</td>";  }
+	while($row = mysqli_fetch_row($result4)) 
+		{ foreach($row as $cell) echo "<td>$cell</td>"; }
+	while($row = mysqli_fetch_row($result5)) 
+		{ foreach($row as $cell) echo "<td>$cell</td>"; }
+	echo "</tr>";
+}
+?>
+</section>
+</div>
+<?php
 
 }
 

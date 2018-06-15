@@ -131,7 +131,6 @@ function deckClicked(x) {
 	if (did) { window.location = 'view_decks.php?did=' + did; }
 }
 
-
 function addCardClicked(x) {
 	cid = x.parentNode.cells[0].innerHTML;
 	if (cid) { window.location = 'view_cards.php?addcid=' + cid; }
@@ -150,6 +149,11 @@ function addCardClickedEdit(x) {
 function removeCardClickedEdit(x) {
 	cid = x.parentNode.cells[0].innerHTML;
 	if (cid) { window.location = 'edit_cards.php?rmcid=' + cid; }
+}
+
+function discussionClicked(x) {
+	did = x.cells[0].innerHTML;
+	if (did) { window.location = 'view_discussions.php?did=' + did}
 }
 
 
