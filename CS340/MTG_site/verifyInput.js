@@ -142,12 +142,17 @@ function newCardClickedEditDecks(x) {
 
 function discussionClicked(x) {
 	did = x.cells[0].innerHTML;
-	if (did) { window.location = 'view_discussions.php?did=' + did}
+	if (did) { window.location = 'view_discussions.php?did=' + did; }
 }
 
+function tradeClicked(x) {
+	tid = x.parentNode.cells[0].innerHTML;
+	if (tid) { window.location = 'my_trades.php?tid=' + tid; }
+}
 
 //trying to figure out how to show information based off selected card
 function whereClick(event) {
 	console.log(event.target);
 }
 document.addEventListener('click', whereClick);
+
